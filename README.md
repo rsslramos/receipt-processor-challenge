@@ -18,7 +18,7 @@ docker run --rm -p 5000:5000 receipt-processor
 ```
 
 The service will be available at `http://localhost:5000`
-```
+
 
 ## API Endpoints
 
