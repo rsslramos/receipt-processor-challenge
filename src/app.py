@@ -24,14 +24,14 @@ def process_receipt():
         )
         memory_store.receipts[receipt.get_receipt_id()] = receipt
         return jsonify({'id': receipt.get_receipt_id()})
-    except ValueError as e:
-        return jsonify({'error': str(e)}), 400
+    except ValueError:
+        return jsonify({'error': "The receipt is invalid"}), 400
     
 @app.route('/receipts/<id>/points', methods=['GET'])
 def get_receipt_points(id: str):
     receipt = memory_store.receipts.get(id)
     if not receipt:
-        return jsonify({'error': 'Receipt not found'}), 404
+        return jsonify({'error': 'No receipt found for that id'}), 404
     return jsonify({'points': receipt.calculate_points()})
 
 if __name__ == "__main__":
